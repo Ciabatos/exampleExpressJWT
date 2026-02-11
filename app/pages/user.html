@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User details</title>
+</head>
+<body>
+    <h1>User details</h1>
+    
+<p>Youve got it !</p>
+
+    <div id="user-info"></div>
+
+    <script>
+      fetch('/api/loggedUser')
+        .then(res => res.json())
+        .then(user => {
+
+          const container = document.getElementById('user-info')
+          container.innerHTML = `
+            <p>ID: ${user.id}</p>
+            <p>Email: ${user.email}</p>
+            <p>Name: ${user.name}</p>
+            <p>Thanks for using this awesome app, created on the fly.😍</p>
+          `
+        })
+        .catch(err => console.error('Błąd pobierania danych użytkownika:', err))
+    </script>
+</body>
+</html>
